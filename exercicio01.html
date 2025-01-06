@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,30 @@
 
     <script>
       const paises = ['Albânia','Bolívia','Canadá','Dinamarca','Etiópia','Finlândia','Alemanha','Hungria','Irlanda','Japão','Quênia'];
+    
+      /* Mostrar lista de paises*/
+
+      for(let i = 0; i< paises.length; i++){
+        console.log(paises[i]);
+      }
+
+      /*Número de itens do array países*/
+      console.log(`Itens do array paises: ${paises.length}`);
+
+      /*Adiciona à primeira posição do array o país Portugal*/
+      paises.unshift('Portugal');
+      console.log(paises);
+
+      /*Adiciona à última posição do array o país Espanha*/
+      paises.push('Espanha');
+      console.log(paises);
+
+      /*Faz console.log dos 3 últimos itens do array, usando apenas uma função*/
+      console.log(paises.slice(10,13));
+
+      /*Faz console.log de todos os países numa só string separado por “ - “ (espaço hífen espaço);*/
+      console.log(paises.join(' - '));
+    
     </script>
 </body>
 </html>
