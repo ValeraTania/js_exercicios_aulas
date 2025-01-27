@@ -19,7 +19,7 @@ const promise = new Promise((success,unsuccesful) =>{
 
 
 // PROMISES usando async/await
-const soma = async (num1,num2) => {  
+/* const soma = async (num1,num2) => {  
 
     const result = num1 + num2;
     
@@ -40,4 +40,9 @@ const soma = async (num1,num2) => {
         console.log(e);
     }
     
-    }
+    } */
+
+    //XMLHTTP request
+const request = new XMLHttpRequest();
+request.open('GET','https://dog.ceo/api/breeds/list/all');
+request.send();
