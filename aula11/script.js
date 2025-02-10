@@ -40,7 +40,7 @@ class Suv extends Carro{
     }
 
     getDetails(){
-        console.log(`Este ${this.marca} e dar cor ${this.color}`);
+        console.log(`${super.display()} e dar cor ${this.color}`);
     }
 }
 
