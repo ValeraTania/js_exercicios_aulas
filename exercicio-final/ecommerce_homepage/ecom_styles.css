@@ -1,0 +1,35 @@
+body{
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+.products-grid{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(5,1fr);
+}
+
+.product{
+    padding: 0.5rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fcfafa;
+
+}
+.product img{
+    width: 50%;
+}
+
+button{
+    background: rgb(122, 122, 248);
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+}
