@@ -8,7 +8,7 @@ fetch('https://fakestoreapi.com/products')
     div.insertAdjacentHTML("beforebegin","<h1>List of products</h1>");
     formatedData.forEach(data => { 
         div.insertAdjacentHTML('beforeend',`<div class=product>
-                                            <p>${data.id}</p><img src='${data.image}'>
+                                            <img src='${data.image}'>
                                             <b>${data.title}</b></b>
                                             <button id=${data.id}>Add to cart</button></div>`);
 
@@ -26,29 +26,30 @@ fetch('https://fakestoreapi.com/products')
 
 
     let cart = [];
+    let quantity=1;
 
-   
    function addToCart(productId) {
-   
-    const existingProduct = cart.find(item => item.productId === productId);
-    if (existingProduct) {
-        const quantity =+1 ;
-    } else {
-        cart.push({ productId, quantity: 1 });
+    let existingProduct = cart.findIndex(item => item.productId === productId);
+    if(existingProduct === -1){
+        cart.push({ productId,  quantity:1 });
     }
-    updateCart();
+    else  {
+        let quantity = cart[existingProduct].quantity;
+        cart[existingProduct].quantity = quantity+1;
+    } 
+   
+    updateCart(productId);
 }
 
 
-
- function updateCart() {
+ function updateCart(productId) {
     const selectedProduct = {
         userId: 1, 
         date: new Date().toISOString().split('T')[0],
         products: cart
     };
 
-    fetch("https://fakestoreapi.com/carts/7",{
+    fetch(`https://fakestoreapi.com/carts/${productId}`,{
         method: "PUT",
         headers: {
             "Content-Type": "application/json"

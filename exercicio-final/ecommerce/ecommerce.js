@@ -27,7 +27,7 @@ class Ecommerce{
     // getAllProductsNames: devolve uma string com todos os nomes dos produtos, 
     // separados por ponto e virgula “;” ;
 
-    getAllProductsNames(){ //funciona, simplificar
+    getAllProductsNames(){ 
         let productsName = [];
         this.listOfProducts.forEach(product => productsName.push(product.name))
         const listOfNames = productsName.join(";");
@@ -37,13 +37,13 @@ class Ecommerce{
     getProductById(productID){
         const productIndex =  this.listOfProducts.findIndex((product) => product.id === productID)
        if(productIndex === -1){
-        console.log(`There's not a product with ID: ${productID}`)
+        console.log(`There's not product with ID: ${productID}`)
        } else{
         console.log(this.listOfProducts[productIndex]);  
     }
 }
 
-    // ○ getProductByName: aceita um nome de produto e devolve esse produto;
+    
     getProductByName(productName){
         const productIndex =  this.listOfProducts.findIndex((product) => product.name === productName)
         if(productIndex === -1){
@@ -88,6 +88,8 @@ class Ecommerce{
     }
     
 }
+
+//Test products
 const ecommerce = new Ecommerce();
  ecommerce.addProductToCart( {id: 1, name: "Bag", price: 45 });
  ecommerce.addProductToCart( {id: 4, name: "Dress", price: 55 });

@@ -12,44 +12,52 @@ fetch(`https://fakestoreapi.com/products/${productID}`)
 .then(response => response.json())
 .then(result => {
     const div = document.createElement('div');
+    div.setAttribute('class','product')
     document.body.prepend(div);
     Object.entries(result).forEach(([key,value]) => {
-        if(key === "image"){
-            div.insertAdjacentHTML('beforebegin',`<img src=${result.image}>`);
-        } else if(key === "rating"){
-            div.insertAdjacentHTML('beforebegin',`<b>Rate:</b><p>${result.rating.rate}</p>
-                                                  <b>Count</b><p>${result.rating.count}</p>`);
+        if(key === "rating"){
+            div.innerHTML+= (`<div class=product-rate><p><b>RATE:</b>${result.rating.rate}
+                                                 <b>COUNT:</b>${result.rating.count}</p></div>`);
+
+        } else if(key === "image"){
+            div.insertAdjacentHTML('afterbegin',`<div class=product-image><img src=${result.image}></div>`);
+
         } 
         else{        
-            div.insertAdjacentHTML('afterbegin',`<b>${key}:</b> <p>${value}</p>`)
+            div.innerHTML+= (`<div class=product-info><p><b>${key.toUpperCase()}:</b>${value}</p></div>`)
     }
-console.log(result)
     })
 
     relatedProducts(result.category);
 });
 
 function relatedProducts(category){
-fetch(`https://fakestoreapi.com/products/category/${category}`)
-.then(categoryResponse => categoryResponse.json())
-.then(categoryResult => {
-    const firstResults = categoryResult.slice(0,3);
-    const div = document.createElement('div');
-    document.body.append(div);
-    console.log(categoryResult)
-    firstResults.forEach(result => div.insertAdjacentHTML('beforebegin',`<b>Title</b>
-                                                                        <p>${result.title}</p>
-                                                                        <img src=${result.image}>`))
-});
+    fetch(`https://fakestoreapi.com/products/category/${category}`)
+    .then(categoryResponse => categoryResponse.json())
+    .then(categoryResult => {
+        const firstResults = categoryResult.slice(0,4);
+        const div = document.createElement('div');
+        document.body.append(div);
+        div.setAttribute('class','related-products-list')
+        div.insertAdjacentHTML('beforebegin','<h3>Related products</h3>');
+        console.log(categoryResult)
+        firstResults.forEach(result => {
+            if(result.id != productID){
+                div.innerHTML+=(`<div class=related-product><p><b>Title</b>
+                    ${result.title}</p>
+                    <img src=${result.image}></div>`);
+            }
+        })
+           
+        const footer = document.createElement('footer');
+        document.body.append(footer);
+        footer.innerHTML = `<h3>Copyright ${new Date().getFullYear()}</h3>`;
+    });
+
+
 
 }
 
-const footer = document.createElement('footer');
-document.body.append(footer);
-footer.innerHTML = `<h3>Copyright ${new Date().getFullYear()}</h3>`;
 
 
-// ○ Pontos bónus: obter id do produto através do URL, com query string:
-// ■ Deverás perceber por ti como se obtém o id;
-// ■ Pistas: deverás obter o endereço e depois apenas o número do id.
 
