@@ -12,16 +12,16 @@ class Ecommerce{
     setProductPrice(productID,newPrice){
        const productIndex =  this.listOfProducts.findIndex((product) => product.id === productID)
       if(productIndex === -1){
-        console.log(`There's no product in the cart with the ID ${productID}`)
+        return `There's no product in the cart with the ID ${productID}`
       } else {
         this.listOfProducts[productIndex].price = newPrice;
-        console.log(`The price of the product was updated. The new price is ${this.listOfProducts[productIndex].price}`);
+        return `The price of the product was updated. The new price is ${this.listOfProducts[productIndex].price}`;
 
       }
     }
 
     getAllProducts(){
-        this.listOfProducts.forEach(product => console.log(product))
+      return  this.listOfProducts.map(product => product);
     }
 
     // getAllProductsNames: devolve uma string com todos os nomes dos produtos, 
@@ -31,15 +31,15 @@ class Ecommerce{
         let productsName = [];
         this.listOfProducts.forEach(product => productsName.push(product.name))
         const listOfNames = productsName.join(";");
-        console.log(`List of products names: ${listOfNames}`);
+        return `List of products names: ${listOfNames}`;
        
     }
     getProductById(productID){
         const productIndex =  this.listOfProducts.findIndex((product) => product.id === productID)
        if(productIndex === -1){
-        console.log(`There's not product with ID: ${productID}`)
+        return `There's not product with ID: ${productID}`;
        } else{
-        console.log(this.listOfProducts[productIndex]);  
+        return this.listOfProducts[productIndex];  
     }
 }
 
@@ -47,9 +47,9 @@ class Ecommerce{
     getProductByName(productName){
         const productIndex =  this.listOfProducts.findIndex((product) => product.name === productName)
         if(productIndex === -1){
-            console.log(`There's not a product with name: ${productName}`)
+            return `There's not a product with name: ${productName}`
            } else{
-            console.log(this.listOfProducts[productIndex]);  
+            return this.listOfProducts[productIndex];  
         }
     }
 
@@ -59,9 +59,9 @@ class Ecommerce{
     getProductsByPrice(initialPrice,finalPrice){
         const productsByPrice = this.listOfProducts.filter((product) => product.price >=initialPrice && product.price <= finalPrice);
         if(productsByPrice.length === 0){
-            console.log(`No products in the price range of ${initialPrice}-${finalPrice} euros`);
+            return `No products in the price range of ${initialPrice}-${finalPrice} euros`;
         }else{
-            console.log(productsByPrice);
+            return productsByPrice;
         }
     }
     
@@ -69,13 +69,11 @@ class Ecommerce{
     // ○ addProductToCart: aceita um produto e adiciona esse produto ao carrinho de compras;
     addProductToCart(product){
         this.cart.push(product);
-        console.log('Product added to cart')
     }
 
     // ○ getCart: devolve a lista de produtos do carrinho de compras;
     getCart(){
-        this.cart.forEach(product => console.log(product))
-
+      return this.cart.map(product =>  product)
     }
     // ○ getCartTotalPrice: devolve a soma de todos os produtos do carrinho;
     getCartTotalPrice(){
@@ -83,7 +81,7 @@ class Ecommerce{
         const cartListOfPrices = this.cart.map((product) => product.price);
         const totalPrice =  cartListOfPrices.reduce((accumulator, currentValue) => 
                                             accumulator + currentValue,initialValue);
-        console.log(totalPrice);
+        return totalPrice;
 
     }
     
