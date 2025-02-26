@@ -77,11 +77,12 @@ class Ecommerce{
     }
     // ○ getCartTotalPrice: devolve a soma de todos os produtos do carrinho;
     getCartTotalPrice(){
+       
         const initialValue = 0;
-        const cartListOfPrices = this.cart.map((product) => product.price);
-        const totalPrice =  cartListOfPrices.reduce((accumulator, currentValue) => 
-                                            accumulator + currentValue,initialValue);
+        const totalPrice =  this.cart.reduce((accumulator, product) => 
+                                            accumulator + product.price,initialValue);
         return totalPrice;
+       
 
     }
     
@@ -89,8 +90,8 @@ class Ecommerce{
 
 //Test products
 const ecommerce = new Ecommerce();
- ecommerce.addProductToCart( {id: 1, name: "Bag", price: 45 });
- ecommerce.addProductToCart( {id: 4, name: "Dress", price: 55 });
+ ecommerce.addProductToCart( {id: 1, name: "Bag", price: 10 });
+ ecommerce.addProductToCart( {id: 4, name: "Dress", price: 25 });
 
  ecommerce.addProduct( {id: 2, name: "Shoes", price: 25 });
  ecommerce.addProduct( {id: 3, name: "Jean", price: 50 });
